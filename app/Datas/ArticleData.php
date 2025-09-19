@@ -60,11 +60,7 @@ class ArticleData extends Data implements Stringable
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
         // $this->volume_credit = $article->getVolumeCredit();
-<<<<<<< HEAD
-        $this->tags = $article->tags->map(fn ($tag) => $tag->name);
-=======
         $this->tags = $article->tags->map(fn ($tag) => $tag->getAttribute('name') ?? $tag->slug ?? '');
->>>>>>> 5cc3f45 (.)
     }
 
     // public function getClosedAt(): string

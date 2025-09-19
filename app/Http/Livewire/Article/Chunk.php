@@ -30,11 +30,7 @@ class Chunk extends Component
             'articles' => $orderedPosts,
         ];
 
-<<<<<<< HEAD
-        return view((string) $view, (string) $view_params);
-=======
         return view($view, $view_params);
->>>>>>> 5cc3f45 (.)
     }
 
     public function url(string $name, array $params): string

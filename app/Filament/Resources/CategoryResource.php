@@ -11,10 +11,7 @@ use Filament\Forms\Components\Select;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages\ListCategories;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages\CreateCategory;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages\EditCategory;
-<<<<<<< HEAD
-=======
 use Filament\Schemas\Components\Component;
->>>>>>> 5cc3f45 (.)
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -84,11 +81,7 @@ class CategoryResource extends XotBaseResource
     }
 
     /**
-<<<<<<< HEAD
-     * @return array<string|int, \Filament\Schemas\Components\Component>
-=======
      * @return array<string|int, Component>
->>>>>>> 5cc3f45 (.)
      */
     public static function getFormSchema(): array
     {

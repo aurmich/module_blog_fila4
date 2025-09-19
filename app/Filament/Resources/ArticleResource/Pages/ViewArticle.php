@@ -31,11 +31,7 @@ class ViewArticle extends ViewRecord
 
     public function infolist(Schema $schema): Schema
     {
-<<<<<<< HEAD
-        return $infolist
-=======
         return $schema
->>>>>>> 5cc3f45 (.)
             ->schema([
                 // ...
                 TextEntry::make('title'),

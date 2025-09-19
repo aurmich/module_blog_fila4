@@ -69,11 +69,7 @@ class Lists extends Component
             'activeCategory' => $this->category,
         ];
 
-<<<<<<< HEAD
-        return view((string) $view, (string) $view_params);
-=======
         return view($view, $view_params);
->>>>>>> 5cc3f45 (.)
     }
 
     public function updatedCategory(): void

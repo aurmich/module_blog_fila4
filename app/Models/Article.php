@@ -261,12 +261,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         if ($translation !== '' || ! $useFallbackLocale) {
             $value = $translation;
         } else {
-<<<<<<< HEAD
-            $value = $translations[config('app.fallback_locale')] ?? '';
-=======
             $fallbackLocale = config('app.fallback_locale');
             $value = is_string($fallbackLocale) ? ($translations[$fallbackLocale] ?? '') : '';
->>>>>>> 5cc3f45 (.)
         }
 
         return match (true) {
@@ -509,9 +505,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-<<<<<<< HEAD
-                return (is_array($attributes) ? (is_array($attributes) ? $attributes['main_image_upload'] : null) : null) ?? (is_array($attributes) ? (is_array($attributes) ? $attributes['main_image_url'] : null) : null) ?? '#';
-=======
                 if (!is_array($attributes)) {
                     return '#';
                 }
@@ -520,7 +513,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
                 $urlImage = $attributes['main_image_url'] ?? null;
                 
                 return (string) ($uploadImage ?? $urlImage ?? '#');
->>>>>>> 5cc3f45 (.)
             }
         );
     }
@@ -595,12 +587,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         $startDate = Carbon::now();
 
         if ($startDate > $endDate) {
-<<<<<<< HEAD
-            return (string) (__('blog::article.single_expired') ?: '');
-=======
             $translation = __('blog::article.single_expired');
             return is_string($translation) ? $translation : '';
->>>>>>> 5cc3f45 (.)
         }
 
         // Calcola la differenza tra le due date
@@ -618,16 +606,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         $minutes = $diff->i;
 
         if ($month === 0 && $days === 0 && $hours === 0 && $minutes === 0) {
-<<<<<<< HEAD
-            return (string) (__('blog::article.single_expired') ?: '');
-        }
-
-        if ($days > 0) {
-            return (string) (__('blog::article.time_left_days', ['days' => $days]) ?: '');
-        }
-
-        return (string) (__('blog::article.time_left', ['hours' => $hours, 'minutes' => $minutes]) ?: '');
-=======
             $translation = __('blog::article.single_expired');
             return is_string($translation) ? $translation : '';
         }
@@ -639,7 +617,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
         $translation = __('blog::article.time_left', ['hours' => $hours, 'minutes' => $minutes]);
         return is_string($translation) ? $translation : '';
->>>>>>> 5cc3f45 (.)
     }
 
     // /**
