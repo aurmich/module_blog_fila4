@@ -80,7 +80,11 @@ class Profile extends Page implements HasForms
             'view' => $view,
         ];
 
+<<<<<<< HEAD
         return view((string) $view, (string) $view_params);
+=======
+        return view($view, $view_params);
+>>>>>>> 5cc3f45 (.)
     }
 
     public function url(string $name, array $params): string
@@ -136,7 +140,11 @@ class Profile extends Page implements HasForms
     {
         return [
             Action::make('save')
+<<<<<<< HEAD
                 ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label') ?: '')
+=======
+                ->label('Save')
+>>>>>>> 5cc3f45 (.)
                 ->submit('save'),
         ];
     }

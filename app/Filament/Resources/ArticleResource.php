@@ -12,6 +12,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Actions;
+<<<<<<< HEAD
+=======
+use Filament\Schemas\Components\Component;
+>>>>>>> 5cc3f45 (.)
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
@@ -176,7 +180,11 @@ class ArticleResource extends XotBaseResource
     }
 
     /**
+<<<<<<< HEAD
      * @return array<string|int, \Filament\Schemas\Components\Component>
+=======
+     * @return array<string|int, Component>
+>>>>>>> 5cc3f45 (.)
      */
     public static function getFormSchema(): array
     {

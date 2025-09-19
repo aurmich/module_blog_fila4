@@ -17,6 +17,10 @@ use Modules\Blog\Filament\Resources\TextWidgetResource\Pages\ListTextWidgets;
 use Modules\Blog\Filament\Resources\TextWidgetResource\Pages\CreateTextWidget;
 use Modules\Blog\Filament\Resources\TextWidgetResource\Pages\ViewTextWidget;
 use Modules\Blog\Filament\Resources\TextWidgetResource\Pages\EditTextWidget;
+<<<<<<< HEAD
+=======
+use Filament\Schemas\Components\Component;
+>>>>>>> 5cc3f45 (.)
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -35,7 +39,11 @@ class TextWidgetResource extends XotBaseResource
 
     // protected static ?string $navigationGroup = 'Content';
     /**
+<<<<<<< HEAD
      * @return array<string|int, \Filament\Schemas\Components\Component>
+=======
+     * @return array<string|int, Component>
+>>>>>>> 5cc3f45 (.)
      */
     public static function getFormSchema(): array
     {
@@ -44,7 +52,11 @@ class TextWidgetResource extends XotBaseResource
 
     /**
      * Ritorna i campi del form (compatibilità con XotBaseResource)
+<<<<<<< HEAD
      * @return array<string|int, \Filament\Schemas\Components\Component>
+=======
+     * @return array<string|int, Component>
+>>>>>>> 5cc3f45 (.)
      */
     public static function getFormFields(): array
     {

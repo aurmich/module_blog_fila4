@@ -6,6 +6,10 @@ namespace Modules\Blog\Http\Livewire\Profile;
 
 use Illuminate\Contracts\View\View;
 use Filament\Support\Enums\Width;
+<<<<<<< HEAD
+=======
+use Filament\Schemas\Schema;
+>>>>>>> 5cc3f45 (.)
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -19,7 +23,11 @@ use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
 /**
+<<<<<<< HEAD
  * @property \Filament\Schemas\Schema $form
+=======
+ * @property Schema $form
+>>>>>>> 5cc3f45 (.)
  */
 class Setting extends Component implements HasActions, HasForms
 {
@@ -60,7 +68,11 @@ class Setting extends Component implements HasActions, HasForms
             '_profile' => $this->model,
         ];
 
+<<<<<<< HEAD
         return view((string) $view, (string) $view_params);
+=======
+        return view($view, $view_params);
+>>>>>>> 5cc3f45 (.)
     }
 
     public function editProfile(): void

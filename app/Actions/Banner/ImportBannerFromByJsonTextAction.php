@@ -60,7 +60,11 @@ class ImportBannerFromByJsonTextAction
             ];
 
             Banner::firstOrCreate($banner_where, $banner_data)
+<<<<<<< HEAD
                 ->addMediaFromUrl((is_array((string) $j) ? $j['desktop_thumbnail'] : null))
+=======
+                ->addMediaFromUrl(is_array($j) ? (string) ($j['desktop_thumbnail'] ?? '') : '')
+>>>>>>> 5cc3f45 (.)
                 ->toMediaCollection('banner');
 
             // $banner->addMediaFromUrl($j['desktop_thumbnail']);
