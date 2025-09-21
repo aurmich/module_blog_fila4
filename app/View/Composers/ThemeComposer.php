@@ -4,9 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
+<<<<<<< HEAD
 use Illuminate\Contracts\Support\Renderable;
 use Modules\UI\View\Components\Render\Blocks;
 use Illuminate\Pagination\LengthAwarePaginator;
+=======
+<<<<<<< HEAD
+use Illuminate\Contracts\Support\Renderable;
+use Modules\UI\View\Components\Render\Blocks;
+use Illuminate\Pagination\LengthAwarePaginator;
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
@@ -64,7 +73,15 @@ class ThemeComposer
             ->take($number)
             ->orderBy('published_at', 'desc')
             ->get();
+<<<<<<< HEAD
         if ($rows->count() === 0/** @phpstan-ignore method.nonObject */) {
+=======
+<<<<<<< HEAD
+        if ($rows->count() === 0/** @phpstan-ignore method.nonObject */) {
+=======
+        if (0 === $rows->count()) {
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
             $rows = Article::get();
             Article::whereRaw('1=1')->update(['show_on_homepage' => true]);
         }
@@ -154,19 +171,43 @@ class ThemeComposer
     }
 
     /**
+<<<<<<< HEAD
      * @return LengthAwarePaginator<Article>
+=======
+<<<<<<< HEAD
+     * @return LengthAwarePaginator<Article>
+=======
+     * @return \Illuminate\Pagination\LengthAwarePaginator<Article>
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
      */
     public function getPaginatedArticles(int $num = 15)
     {
         return Article::paginate($num);
     }
 
+<<<<<<< HEAD
     public function showArticleSidebarContent(string $slug): Renderable
+=======
+<<<<<<< HEAD
+    public function showArticleSidebarContent(string $slug): Renderable
+=======
+    public function showArticleSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
     {
         Assert::isInstanceOf($article = Article::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Article::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
 
+<<<<<<< HEAD
         $article = new Blocks(blocks: $article->sidebar_blocks, model: $article);
+=======
+<<<<<<< HEAD
+        $article = new Blocks(blocks: $article->sidebar_blocks, model: $article);
+=======
+        $article = new \Modules\UI\View\Components\Render\Blocks(blocks: $article->sidebar_blocks, model: $article);
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 
         return $article->render();
     }

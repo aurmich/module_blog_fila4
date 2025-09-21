@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
 use Illuminate\Support\Carbon;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 use Modules\Media\Models\Media;
@@ -14,6 +18,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -22,6 +31,10 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Blog\Models\TextWidget.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
  * @property int $id
  * @property string $key
  * @property string|null $image
@@ -73,6 +86,52 @@ use Webmozart\Assert\Assert;
  * @method static int count(string $columns = '*')
  *
  * @mixin \Eloquent
+<<<<<<< HEAD
+=======
+=======
+ * @property int                                                                                                        $id
+ * @property string                                                                                                     $key
+ * @property string|null                                                                                                $image
+ * @property string|null                                                                                                $title
+ * @property string|null                                                                                                $content
+ * @property int                                                                                                        $active
+ * @property \Illuminate\Support\Carbon|null                                                                            $created_at
+ * @property \Illuminate\Support\Carbon|null                                                                            $updated_at
+ * @property string|null                                                                                                $updated_by
+ * @property string|null                                                                                                $created_by
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
+ * @method static \Modules\Blog\Database\Factories\TextWidgetFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withoutTrashed()
+ *
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereDeletedBy($value)
+ *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
+ * @mixin \Illuminate\Database\Eloquent\Model
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
  */
 class TextWidget extends BaseModel implements HasMedia
 {
@@ -80,7 +139,14 @@ class TextWidget extends BaseModel implements HasMedia
 
     /**
      * Attributi assegnabili in massa (mass assignment).
+<<<<<<< HEAD
      *
+=======
+<<<<<<< HEAD
+     *
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
      * @var list<string>
      */
     protected $fillable = [

@@ -4,16 +4,32 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
 use LaraZeus\SpatieTranslatable\Resources\Pages\EditRecord\Concerns\Translatable;
 use Filament\Schemas\Schema;
 use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\Action;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Filament\Actions;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Infolists\Components\TextEntry;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+use Filament\Infolists\Infolist;
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\ViewRecord;
 use Modules\Blog\Actions\Article\TranslateContentAction;
@@ -25,13 +41,29 @@ use Modules\Rating\Filament\Resources\HasRatingResource\Widgets as RatingWidgets
 
 class ViewArticle extends ViewRecord
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
     use Translatable;
 
     protected static string $resource = ArticleResource::class;
 
     public function infolist(Schema $schema): Schema
+<<<<<<< HEAD
     {
         return $schema
+=======
+=======
+    use EditRecord\Concerns\Translatable;
+
+    protected static string $resource = ArticleResource::class;
+
+    public function infolist(Infolist $infolist): Infolist
+>>>>>>> origin/develop
+    {
+        return $infolist
+>>>>>>> 336b9b7 (.)
             ->schema([
                 // ...
                 TextEntry::make('title'),
@@ -43,6 +75,10 @@ class ViewArticle extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
             LocaleSwitcher::make(),
             EditAction::make(),
             DeleteAction::make(),
@@ -53,6 +89,21 @@ class ViewArticle extends ViewRecord
                 ->label('')
                 ->icon('heroicon-o-lock-closed')
                 ->schema([
+<<<<<<< HEAD
+=======
+=======
+            Actions\LocaleSwitcher::make(),
+            Actions\EditAction::make(),
+            Actions\DeleteAction::make(),
+            // BetHeaderAction::make(),
+            // WinHeaderAction::make(),
+            Actions\Action::make('change_closed_at')
+                ->tooltip('cambia data chiusura')
+                ->label('')
+                ->icon('heroicon-o-lock-closed')
+                ->form([
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
                     DateTimePicker::make('closed_at')
                         ->native(false),
                 ])

@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
+<<<<<<< HEAD
 use Stringable;
+=======
+<<<<<<< HEAD
+use Stringable;
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Modules\Blog\Actions\Category\GetBloodline;
@@ -13,7 +20,15 @@ use Modules\Blog\Models\Category;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 
+<<<<<<< HEAD
 class ArticleData extends Data implements Stringable
+=======
+<<<<<<< HEAD
+class ArticleData extends Data implements Stringable
+=======
+class ArticleData extends Data implements \Stringable
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 {
     public string $title = '';
 
@@ -60,7 +75,11 @@ class ArticleData extends Data implements Stringable
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
         // $this->volume_credit = $article->getVolumeCredit();
+<<<<<<< HEAD
         $this->tags = $article->tags->map(fn ($tag) => $tag->getAttribute('name') ?? $tag->slug ?? '');
+=======
+        $this->tags = $article->tags->map(fn ($tag) => $tag->name);
+>>>>>>> 336b9b7 (.)
     }
 
     // public function getClosedAt(): string

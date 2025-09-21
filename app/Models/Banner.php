@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
 use Illuminate\Support\Carbon;
 use Modules\Blog\Database\Factories\MenuFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,6 +17,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -23,6 +32,10 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\Menu.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
  * @property int $id
  * @property string $name
  * @property array|null $items
@@ -95,6 +108,73 @@ use Spatie\Translatable\HasTranslations;
  * @method static int count(string $columns = '*')
  *
  * @mixin \Eloquent
+<<<<<<< HEAD
+=======
+=======
+ * @property int                             $id
+ * @property string                          $name
+ * @property array|null                      $items
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null                     $updated_by
+ * @property string|null                     $created_by
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
+ *
+ * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
+ *
+ * @property string|null                                                                                                $link
+ * @property string|null                                                                                                $title
+ * @property string|null                                                                                                $description
+ * @property string|null                                                                                                $action_text
+ * @property string|null                                                                                                $category_id
+ * @property \Illuminate\Support\Carbon|null                                                                            $start_date
+ * @property \Illuminate\Support\Carbon|null                                                                            $end_date
+ * @property bool                                                                                                       $hot_topic
+ * @property int|null                                                                                                   $open_markets_count
+ * @property bool                                                                                                       $landing_banner
+ * @property int|null                                                                                                   $pos
+ * @property Category|null                                                                                              $category
+ * @property string                                                                                                     $desktop_thumbnail
+ * @property string                                                                                                     $desktop_thumbnail_webp
+ * @property string                                                                                                     $mobile_thumbnail
+ * @property string                                                                                                     $mobile_thumbnail_webp
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereActionText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereHotTopic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLandingBanner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereOpenMarketsCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereTitle($value)
+ *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
+ * @mixin \Illuminate\Database\Eloquent\Model
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
  */
 class Banner extends BaseModel implements HasMedia
 {
@@ -103,7 +183,14 @@ class Banner extends BaseModel implements HasMedia
 
     /**
      * Attributi assegnabili in massa (mass assignment).
+<<<<<<< HEAD
      *
+=======
+<<<<<<< HEAD
+     *
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
      * @var list<string>
      */
     protected $fillable = [
@@ -193,7 +280,15 @@ class Banner extends BaseModel implements HasMedia
 
     public function getUrlCategoryPage(): string
     {
+<<<<<<< HEAD
         if ($this->category === null) {
+=======
+<<<<<<< HEAD
+        if ($this->category === null) {
+=======
+        if (null === $this->category) {
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
             return route('categories.index', ['lang' => app()->getLocale()]);
         }
 

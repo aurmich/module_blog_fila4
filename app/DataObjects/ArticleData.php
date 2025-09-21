@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\DataObjects;
 
+<<<<<<< HEAD
 use DateTimeInterface;
+=======
+<<<<<<< HEAD
+use DateTimeInterface;
+=======
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
@@ -60,9 +67,21 @@ class ArticleData extends Data
     public static function fromArray(array $data): self
     {
         return new self(
+<<<<<<< HEAD
             bet_end_date: (isset($data['bet_end_date']) && (is_string($data['bet_end_date']) || $data['bet_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['bet_end_date']) : null,
             event_start_date: (isset($data['event_start_date']) && (is_string($data['event_start_date']) || $data['event_start_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_start_date']) : null,
             event_end_date: (isset($data['event_end_date']) && (is_string($data['event_end_date']) || $data['event_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_end_date']) : null,
+=======
+<<<<<<< HEAD
+            bet_end_date: (isset($data['bet_end_date']) && (is_string($data['bet_end_date']) || $data['bet_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['bet_end_date']) : null,
+            event_start_date: (isset($data['event_start_date']) && (is_string($data['event_start_date']) || $data['event_start_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_start_date']) : null,
+            event_end_date: (isset($data['event_end_date']) && (is_string($data['event_end_date']) || $data['event_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_end_date']) : null,
+=======
+            bet_end_date: (isset($data['bet_end_date']) && (is_string($data['bet_end_date']) || $data['bet_end_date'] instanceof \DateTimeInterface)) ? Carbon::parse($data['bet_end_date']) : null,
+            event_start_date: (isset($data['event_start_date']) && (is_string($data['event_start_date']) || $data['event_start_date'] instanceof \DateTimeInterface)) ? Carbon::parse($data['event_start_date']) : null,
+            event_end_date: (isset($data['event_end_date']) && (is_string($data['event_end_date']) || $data['event_end_date'] instanceof \DateTimeInterface)) ? Carbon::parse($data['event_end_date']) : null,
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
             category: is_array($data['category'] ?? null) ? $data['category'] : [],
             title: is_string($data['title'] ?? null) ? $data['title'] : '',
             slug: is_string($data['slug'] ?? null) ? $data['slug'] : '',

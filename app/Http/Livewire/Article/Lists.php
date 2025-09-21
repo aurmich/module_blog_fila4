@@ -69,7 +69,15 @@ class Lists extends Component
             'activeCategory' => $this->category,
         ];
 
+<<<<<<< HEAD
         return view($view, $view_params);
+=======
+<<<<<<< HEAD
+        return view((string) $view, (string) $view_params);
+=======
+        return view($view, $view_params);
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
     }
 
     public function updatedCategory(): void
@@ -84,7 +92,15 @@ class Lists extends Component
 
     public function loadMore(): void
     {
+<<<<<<< HEAD
         $this->currentChunk++;
+=======
+<<<<<<< HEAD
+        $this->currentChunk++;
+=======
+        ++$this->currentChunk;
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
     }
 
     // private function getActiveCategory(): ?Category
@@ -103,7 +119,15 @@ class Lists extends Component
             $query = $query->whereCategoryId($activeCategory->id);
         }
 
+<<<<<<< HEAD
         if ($this->order === 'date_asc') {
+=======
+<<<<<<< HEAD
+        if ($this->order === 'date_asc') {
+=======
+        if ('date_asc' === $this->order) {
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
             return $query->orderBy('published_at', 'asc');
         }
 
@@ -113,11 +137,25 @@ class Lists extends Component
     private function refreshArticles(): void
     {
         // This will force the update of the `post-chunk` child components
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
         $this->queryCount++;
         $this->currentChunk = 0;
 
         $postIds = $this->getArticleQuery()->pluck('id');
         $this->postCount = $postIds->count(); /** @phpstan-ignore method.nonObject */
+<<<<<<< HEAD
+=======
+=======
+        ++$this->queryCount;
+        $this->currentChunk = 0;
+
+        $postIds = $this->getArticleQuery()->pluck('id');
+        $this->postCount = $postIds->count();
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
         $this->postChunks = $postIds->chunk(self::ITEMS_PER_PAGE);
     }
 }

@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 336b9b7 (.)
 use Illuminate\Contracts\View\View;
 use Filament\Schemas\Schema;
 use Filament\Actions\Action;
@@ -11,6 +15,18 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+<<<<<<< HEAD
+=======
+=======
+use Filament\Actions\Action;
+use Filament\Facades\Filament;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
 use Modules\Blog\Aggregates\ArticleAggregate;
@@ -21,7 +37,15 @@ use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
 /**
+<<<<<<< HEAD
  * @property \Filament\Schemas\Schema $form
+=======
+<<<<<<< HEAD
+ * @property \Filament\Schemas\Schema $form
+=======
+ * @property ComponentContainer $form
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
  */
 class Profile extends Page implements HasForms
 {
@@ -35,7 +59,23 @@ class Profile extends Page implements HasForms
 
     public BlogProfile $model;
 
+<<<<<<< HEAD
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-document-text';
+=======
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
+>>>>>>> a12f125f4a (.)
+=======
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-document-text';
+>>>>>>> b93ef594b4 (.)
+=======
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
 
     // protected static string $view = 'filament.pages.edit-company';
 
@@ -69,7 +109,15 @@ class Profile extends Page implements HasForms
         $this->form->fill($this->data);
     }
 
+<<<<<<< HEAD
     public function render(): View
+=======
+<<<<<<< HEAD
+    public function render(): View
+=======
+    public function render(): \Illuminate\Contracts\View\View
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
     {
         /**
          * @phpstan-var view-string
@@ -80,7 +128,15 @@ class Profile extends Page implements HasForms
             'view' => $view,
         ];
 
+<<<<<<< HEAD
         return view($view, $view_params);
+=======
+<<<<<<< HEAD
+        return view((string) $view, (string) $view_params);
+=======
+        return view($view, $view_params);
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
     }
 
     public function url(string $name, array $params): string
@@ -88,7 +144,15 @@ class Profile extends Page implements HasForms
         return '#';
     }
 
+<<<<<<< HEAD
     public function form(Schema $form): Schema
+=======
+<<<<<<< HEAD
+    public function form(Schema $form): Schema
+=======
+    public function form(Form $form): Form
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
     {
         $schema = [];
         foreach (array_keys($this->data) as $key) {
@@ -105,7 +169,15 @@ class Profile extends Page implements HasForms
 
         // dddx($schema);
         return $form
+<<<<<<< HEAD
             ->components($schema)
+=======
+<<<<<<< HEAD
+            ->components($schema)
+=======
+            ->schema($schema)
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
             ->statePath('data');
     }
 
@@ -136,7 +208,15 @@ class Profile extends Page implements HasForms
     {
         return [
             Action::make('save')
+<<<<<<< HEAD
                 ->label('Save')
+=======
+<<<<<<< HEAD
+                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label') ?: '')
+=======
+                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
+>>>>>>> origin/develop
+>>>>>>> 336b9b7 (.)
                 ->submit('save'),
         ];
     }

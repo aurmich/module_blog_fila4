@@ -13,9 +13,19 @@ class GetTreeOptions
     use QueueableAction;
 
     /**
+<<<<<<< HEAD
      * @param Model&\Kalnoy\Nestedset\NodeTrait $model
      * @return array
      */
+=======
+    <<<<<<< HEAD
+    * @param Model&\Kalnoy\Nestedset\NodeTrait $model
+    =======
+     * @param Model&\Kalnoy\Nestedset\NodeTrait $model
+     * >>>>>>> origin/develop
+    * @return array
+    */
+>>>>>>> 336b9b7 (.)
     public function execute(Model $model): array
     {
         $models = $model::tree()->get()->toTree();
