@@ -8,14 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-<<<<<<< HEAD
 use Modules\Blog\Models\Concerns\HasPathByParentId;
-=======
-<<<<<<< HEAD
-use Modules\Blog\Models\Concerns\HasPathByParentId;
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\SortableTrait;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -26,15 +19,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  */
 abstract class BaseTreeModel extends BaseModel
 {
-<<<<<<< HEAD
     use HasPathByParentId;
-=======
-<<<<<<< HEAD
-    use HasPathByParentId;
-=======
-    use Concerns\HasPathByParentId;
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
     use HasRecursiveRelationships;
     use SortableTrait;
 
@@ -55,7 +40,7 @@ abstract class BaseTreeModel extends BaseModel
         // }
 
         // Save the previous parent to be used when finishing.
-        $this->parent()->associate($parent);
+        $this->parent()->associate($parent); // @phpstan-ignore argument.type
 
         $this->save();
 

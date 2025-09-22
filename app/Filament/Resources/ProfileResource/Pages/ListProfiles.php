@@ -4,14 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Tables\Columns\Column;
-=======
-<<<<<<< HEAD
-use Filament\Tables\Columns\Column;
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 use Filament\Tables\Columns\TextColumn;
 use Modules\Blog\Filament\Actions\Profile\ModifyCredits;
 use Modules\Blog\Filament\Resources\ProfileResource;
@@ -27,24 +20,10 @@ class ListProfiles extends UserListProfiles
     //        Actions\CreateAction::make(),
     //    ];
     // }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
     /**
      * Get table columns.
      *
      * @return array<string, Column>
-<<<<<<< HEAD
-=======
-=======
-
-    /**
-     * Get table columns.
-     *
-     * @return array<string, \Filament\Tables\Columns\Column>
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      */
     public function getTableColumns(): array
     {

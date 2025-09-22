@@ -4,14 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Actions\DeleteAction;
-=======
-<<<<<<< HEAD
-use Filament\Actions\DeleteAction;
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 use Filament\Actions;
 use Modules\Blog\Filament\Resources\ProfileResource;
 use Modules\User\Filament\Resources\BaseProfileResource\Pages\EditProfile as UserEditProfile;
@@ -23,15 +16,7 @@ class EditProfile extends UserEditProfile
     protected function getHeaderActions(): array
     {
         return [
-<<<<<<< HEAD
             DeleteAction::make(),
-=======
-<<<<<<< HEAD
-            DeleteAction::make(),
-=======
-            Actions\DeleteAction::make(),
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
         ];
     }
 }

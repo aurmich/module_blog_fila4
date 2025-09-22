@@ -12,11 +12,7 @@ use function Safe\json_decode;
 use function Safe\preg_replace;
 
 /**
-<<<<<<< HEAD
  * @extends Factory<Article>
-=======
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Blog\Models\Article>
->>>>>>> origin/develop
  */
 class ArticleFactory extends Factory
 {
@@ -34,10 +30,11 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
-        $title = preg_replace('/\./', '', fake()->sentence(6));
+        $title = fake()->sentence(6);
+        $title = str_replace('.', '', $title);
 
         return [
-            'slug' => Str::slug($title),
+            'slug' => Str::slug((string) $title),
             'title' => $title,
             'main_image_url' => 'https://picsum.photos/id/353/800/600',
             // 'category_id' => 1,

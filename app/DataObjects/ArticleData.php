@@ -4,14 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\DataObjects;
 
-<<<<<<< HEAD
 use DateTimeInterface;
-=======
-<<<<<<< HEAD
-use DateTimeInterface;
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
@@ -31,7 +24,7 @@ class ArticleData extends Data
         #[WithCast(DateTimeInterfaceCast::class)]
         public readonly ?Carbon $event_end_date = null,
         
-        /** @var array<int,array<string,mixed>> */
+        /** @var array<mixed> */
         public readonly array $category = [],
         
         public readonly string $title = '',
@@ -46,13 +39,13 @@ class ArticleData extends Data
         public readonly int $wagers_count_canonical = 0,
         public readonly int $wagers_count_total = 0,
         
-        /** @var array<int,array<string,mixed>> */
+        /** @var array<mixed> */
         public readonly array $wagers = [],
         
         public readonly float $volume_play_money = 0.0,
         public readonly float $volume_real_money = 0.0,
         
-        /** @var array<int,array<string,mixed>> */
+        /** @var array<mixed> */
         public readonly array $outcomes = [],
         
         public readonly ?string $thumbnail_2x = null,
@@ -67,22 +60,10 @@ class ArticleData extends Data
     public static function fromArray(array $data): self
     {
         return new self(
-<<<<<<< HEAD
             bet_end_date: (isset($data['bet_end_date']) && (is_string($data['bet_end_date']) || $data['bet_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['bet_end_date']) : null,
             event_start_date: (isset($data['event_start_date']) && (is_string($data['event_start_date']) || $data['event_start_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_start_date']) : null,
             event_end_date: (isset($data['event_end_date']) && (is_string($data['event_end_date']) || $data['event_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_end_date']) : null,
-=======
-<<<<<<< HEAD
-            bet_end_date: (isset($data['bet_end_date']) && (is_string($data['bet_end_date']) || $data['bet_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['bet_end_date']) : null,
-            event_start_date: (isset($data['event_start_date']) && (is_string($data['event_start_date']) || $data['event_start_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_start_date']) : null,
-            event_end_date: (isset($data['event_end_date']) && (is_string($data['event_end_date']) || $data['event_end_date'] instanceof DateTimeInterface)) ? Carbon::parse($data['event_end_date']) : null,
-=======
-            bet_end_date: (isset($data['bet_end_date']) && (is_string($data['bet_end_date']) || $data['bet_end_date'] instanceof \DateTimeInterface)) ? Carbon::parse($data['bet_end_date']) : null,
-            event_start_date: (isset($data['event_start_date']) && (is_string($data['event_start_date']) || $data['event_start_date'] instanceof \DateTimeInterface)) ? Carbon::parse($data['event_start_date']) : null,
-            event_end_date: (isset($data['event_end_date']) && (is_string($data['event_end_date']) || $data['event_end_date'] instanceof \DateTimeInterface)) ? Carbon::parse($data['event_end_date']) : null,
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
-            category: is_array($data['category'] ?? null) ? $data['category'] : [],
+            category: is_array($data['category'] ?? null) ? (array)$data['category'] : [],
             title: is_string($data['title'] ?? null) ? $data['title'] : '',
             slug: is_string($data['slug'] ?? null) ? $data['slug'] : '',
             status: ArticleStatus::fromString(is_string($data['status'] ?? null) ? $data['status'] : 'draft'),
@@ -94,10 +75,10 @@ class ArticleData extends Data
             wagers_count: is_numeric($data['wagers_count'] ?? null) ? (int)$data['wagers_count'] : 0,
             wagers_count_canonical: is_numeric($data['wagers_count_canonical'] ?? null) ? (int)$data['wagers_count_canonical'] : 0,
             wagers_count_total: is_numeric($data['wagers_count_total'] ?? null) ? (int)$data['wagers_count_total'] : 0,
-            wagers: is_array($data['wagers'] ?? null) ? $data['wagers'] : [],
+            wagers: is_array($data['wagers'] ?? null) ? (array)$data['wagers'] : [],
             volume_play_money: is_numeric($data['volume_play_money'] ?? null) ? (float)$data['volume_play_money'] : 0.0,
             volume_real_money: is_numeric($data['volume_real_money'] ?? null) ? (float)$data['volume_real_money'] : 0.0,
-            outcomes: is_array($data['outcomes'] ?? null) ? $data['outcomes'] : [],
+            outcomes: is_array($data['outcomes'] ?? null) ? (array)$data['outcomes'] : [],
             thumbnail_2x: is_string($data['thumbnail_2x'] ?? null) ? $data['thumbnail_2x'] : null,
         );
     }

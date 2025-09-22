@@ -8,19 +8,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\BannerResource\Pages;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
 use Filament\Actions\CreateAction;
 use Filament\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\Column;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -35,10 +26,6 @@ class ListBanners extends XotBaseListRecords
 {
     // protected static string $resource = BannerResource::class;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
 
     protected function getHeaderActions(): array
     {
@@ -46,18 +33,6 @@ class ListBanners extends XotBaseListRecords
             'create' => CreateAction::make(),
             'import' => Action::make('import')
                 ->schema([
-<<<<<<< HEAD
-=======
-=======
-    
-    protected function getHeaderActions(): array
-    {
-        return [
-            'create' => Actions\CreateAction::make(),
-            'import' => Actions\Action::make('import')
-                ->form([
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
                     FileUpload::make('file')
                         ->label('')
                         // ->acceptedFileTypes(['application/json', 'json'])
@@ -78,23 +53,11 @@ class ListBanners extends XotBaseListRecords
     /**
      * Definisce le colonne della tabella di elenco banner.
      *
-<<<<<<< HEAD
      * @return array<string, Column>
-=======
-<<<<<<< HEAD
-     * @return array<string, Column>
-=======
-     * @return array<string, \Filament\Tables\Columns\Column>
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      */
     public function getTableColumns(): array
     {
         return [
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
             'id' => TextColumn::make('id')
                 ->label(static::trans('fields.id'))
                 ->sortable()
@@ -104,20 +67,6 @@ class ListBanners extends XotBaseListRecords
                 ->sortable()
                 ->searchable(),
             'category' => TextColumn::make('category.title')
-<<<<<<< HEAD
-=======
-=======
-            'id' => Tables\Columns\TextColumn::make('id')
-                ->label(static::trans('fields.id'))
-                ->sortable()
-                ->searchable(),
-            'title' => Tables\Columns\TextColumn::make('title')
-                ->label(static::trans('fields.title'))
-                ->sortable()
-                ->searchable(),
-            'category' => Tables\Columns\TextColumn::make('category.title')
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
                 ->label(static::trans('fields.category.title'))
                 ->sortable()
                 ->searchable(),

@@ -30,19 +30,20 @@ class ShowArticleCommand extends Command
     public function handle(): void
     {
         $articleIdRaw = $this->argument('articleId');
-        $articleId = is_scalar($articleIdRaw) ? (string)$articleIdRaw : '[ID non valido]';
+        $articleId = is_scalar($articleIdRaw) ? (string) $articleIdRaw : '[ID non valido]';
         Assert::notNull($article = Article::firstWhere(['id' => $articleId]), '['.__LINE__.']['.__FILE__.']');
 
         $ratings = $article->ratings()
             ->where('user_id', null)
             ->get();
 
-        $title = is_scalar($article->title) ? (string)$article->title : '[Titolo non valido]';
+        $title = is_scalar($article->title) ? (string) $article->title : '[Titolo non valido]';
         $this->info($title);
         $header = ['id', 'title', 'is_winner', 'count', 'sum', 'avg', 'tot'];
         $rows = [];
         foreach ($ratings as $rating) {
-            $tmp = $article->loadSum(['ratings as value_sum' => static function ($query) use ($rating): void {
+            /** @var \Modules\Blog\Models\Article $tmpArticle */
+            $tmpArticle = $article->loadSum(['ratings as value_sum' => static function ($query) use ($rating): void {
                 $query
                     ->where('ratings.id', $rating->id)
                     ->where('rating_morph.user_id', '!=', null);
@@ -65,12 +66,12 @@ class ShowArticleCommand extends Command
                         ->where('rating_morph.user_id', '!=', null);
                 }], 'rating_morph.value');
 
-            $sum = $tmp->value_sum ?? 0;
-            // $avg = $tmp->value_avg;
-            $avg = round($tmp->value_sum * 100 / $tmp->value_tot, 2);
-            $count = $tmp->value_count;
-            $tot = $tmp->value_tot;
-            $data = [$rating->id, $rating->title, $rating->pivot->is_winner,  $count, $sum, $avg, $tot];
+            // Use getAttribute to safely access dynamic properties
+            $sum = (int) ($tmpArticle->getAttribute('value_sum') ?? 0);
+            $tot = (int) ($tmpArticle->getAttribute('value_tot') ?? 0);
+            $count = (int) ($tmpArticle->getAttribute('value_count') ?? 0);
+            $avg = $tot > 0 ? round($sum * 100 / $tot, 2) : 0;
+            $data = [$rating->id, $rating->title, $rating->pivot?->is_winner,  $count, $sum, $avg, $tot];
             $rows[] = $data;
         }
         $this->table($header, $rows);

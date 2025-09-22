@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Blog\Actions\ParentChilds;
 
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\NodeTrait;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetTreeOptions
@@ -13,31 +12,47 @@ class GetTreeOptions
     use QueueableAction;
 
     /**
-<<<<<<< HEAD
-     * @param Model&\Kalnoy\Nestedset\NodeTrait $model
-     * @return array
+     * @param  Model  $model  - Model that uses HasRecursiveRelationships
+     * @return array<int, string>
      */
-=======
-    <<<<<<< HEAD
-    * @param Model&\Kalnoy\Nestedset\NodeTrait $model
-    =======
-     * @param Model&\Kalnoy\Nestedset\NodeTrait $model
-     * >>>>>>> origin/develop
-    * @return array
-    */
->>>>>>> 336b9b7 (.)
     public function execute(Model $model): array
     {
-        $models = $model::tree()->get()->toTree();
+        // Use tree() method for models with HasRecursiveRelationships
+        if (method_exists($model, 'tree')) {
+            /** @var \Illuminate\Database\Eloquent\Collection $models */
+            $models = $model->tree()->get()->toTree();
+        } else {
+            // Fallback for models without tree functionality
+            $models = $model::all();
+        }
+
         $results = [];
         foreach ($models as $mod) {
-            $results[$mod->id] = $mod->title;
-            foreach ($mod->children as $child) {
-                $results[$child->id] = '--------->'.$child->title;
-                foreach ($child->children as $cld) {
-                    $results[$cld->id] = '----------------->'.$cld->title;
-                    foreach ($cld->children as $c) {
-                        $results[$c->id] = '------------------------->'.$c->title;
+            if (property_exists($mod, 'id') && property_exists($mod, 'title')) {
+                $results[$mod->id] = $mod->title;
+
+                // Handle children if they exist
+                if (property_exists($mod, 'children') && $mod->children) {
+                    foreach ($mod->children as $child) {
+                        if (property_exists($child, 'id') && property_exists($child, 'title')) {
+                            $results[$child->id] = '--------->'.$child->title;
+
+                            if (property_exists($child, 'children') && $child->children) {
+                                foreach ($child->children as $cld) {
+                                    if (property_exists($cld, 'id') && property_exists($cld, 'title')) {
+                                        $results[$cld->id] = '----------------->'.$cld->title;
+
+                                        if (property_exists($cld, 'children') && $cld->children) {
+                                            foreach ($cld->children as $c) {
+                                                if (property_exists($c, 'id') && property_exists($c, 'title')) {
+                                                    $results[$c->id] = '------------------------->'.$c->title;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

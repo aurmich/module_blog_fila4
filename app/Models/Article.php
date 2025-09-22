@@ -4,40 +4,28 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
-use Illuminate\Database\Eloquent\Collection;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-use Modules\Media\Models\Media;
-use Spatie\ModelStatus\Status;
-use Modules\Blog\Database\Factories\ArticleFactory;
 use ArrayAccess;
-use Spatie\Tags\Tag;
-use Modules\Rating\Models\RatingMorph;
-use Modules\Xot\Contracts\ProfileContract;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Comment\Models\CommentNotificationSubscription;
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Modules\Blog\Database\Factories\ArticleFactory;
+use Modules\Comment\Models\CommentNotificationSubscription;
 use Modules\Lang\Models\Contracts\HasTranslationsContract;
+use Modules\Media\Models\Media;
 use Modules\Rating\Models\Contracts\HasRatingContract;
 use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
 use Modules\Rating\Models\Traits\HasRating;
+use Modules\Xot\Contracts\ProfileContract;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
 use Parental\HasChildren;
@@ -45,17 +33,16 @@ use Safe\DateTime;
 use Spatie\Comments\Models\Concerns\HasComments;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Spatie\ModelStatus\Status;
 use Spatie\Tags\HasTags;
+use Spatie\Tags\Tag;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
 
 /**
  * Modules\Blog\Models\Article.
  *
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
  * @property Profile|null $author
  * @property Collection<int, Category> $categories
  * @property int|null $categories_count
@@ -128,83 +115,6 @@ use Webmozart\Assert\Assert;
  * @property int|null $ratings_count
  * @property mixed $translations
  * @property string|null $rewarded_at
-<<<<<<< HEAD
-=======
-=======
- * @property Profile|null                                                                                               $author
- * @property \Illuminate\Database\Eloquent\Collection<int, Category>                                                    $categories
- * @property int|null                                                                                                   $categories_count
- * @property \Illuminate\Database\Eloquent\Collection<int, Comment>                                                     $comments
- * @property int|null                                                                                                   $comments_count
- * @property string                                                                                                     $human_read_time
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- * @property int|null                                                                                                   $media_count
- * @property \Illuminate\Database\Eloquent\Collection<int, Tag>                                                         $tags
- * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
- * @property int|null                                                                                                   $statuses_count
- * @property int|null                                                                                                   $tags_count
- * @property UserContract|null                                                                                          $user
- * @property string                                                                                                     $body
- * @property Carbon                                                                                                     $published_at
- * @property Carbon                                                                                                     $updated_at
- * @property string                                                                                                     $slug
- * @property string                                                                                                     $title
- * @property string                                                                                                     $description
- * @property string                                                                                                     $main_image_upload
- * @property string                                                                                                     $main_image_url
- * @property string                                                                                                     $content_blocks
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   currentStatus(...$names)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   differentFromCurrentArticle(string $current_article)
- * @method static \Modules\Blog\Database\Factories\ArticleFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Article   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   otherCurrentStatus(...$names)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   published()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   publishedUntilToday()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   search(string $searching)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   showHomepage()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   tag(string $id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAllTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
- *
- * @property string                                                $id
- * @property string                                                $uuid
- * @property string|null                                           $content
- * @property string|null                                           $picture
- * @property int|null                                              $category_id
- * @property int|null                                              $author_id
- * @property string|null                                           $status
- * @property int                                                   $show_on_homepage
- * @property int|null                                              $read_time
- * @property string|null                                           $excerpt
- * @property string                                                $created_at
- * @property \Illuminate\Support\Carbon|null                       $deleted_at
- * @property string|null                                           $updated_by
- * @property string|null                                           $created_by
- * @property string|null                                           $deleted_by
- * @property array|null                                            $footer_blocks
- * @property array|null                                            $sidebar_blocks
- * @property int                                                   $is_featured
- * @property string|null                                           $closed_at
- * @property Category|null                                         $category
- * @property string                                                $main_image
- * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
- * @property int|null                                              $ratings_count
- * @property mixed                                                 $translations
- * @property string|null                                           $rewarded_at
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
@@ -235,10 +145,6 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
  *
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
  * @property int $status_display
  * @property string|null $bet_end_date
  * @property string|null $event_start_date
@@ -254,26 +160,6 @@ use Webmozart\Assert\Assert;
  * @property float|null $volume_play_money
  * @property float|null $volume_real_money
  * @property int $is_following
-<<<<<<< HEAD
-=======
-=======
- * @property int         $status_display
- * @property string|null $bet_end_date
- * @property string|null $event_start_date
- * @property string|null $event_end_date
- * @property int         $is_wagerable
- * @property int|null    $wagers_count
- * @property int|null    $wagers_count_canonical
- * @property int|null    $wagers_count_total
- * @property int|null    $wagers
- * @property string|null $brier_score
- * @property string|null $brier_score_play_money
- * @property string|null $brier_score_real_money
- * @property float|null  $volume_play_money
- * @property float|null  $volume_real_money
- * @property int         $is_following
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
@@ -292,24 +178,12 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
  *
-<<<<<<< HEAD
  * @property RatingMorph $pivot
-=======
-<<<<<<< HEAD
- * @property RatingMorph $pivot
-=======
- * @property \Modules\Rating\Models\RatingMorph $pivot
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereRewardedAt($value)
  *
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
  *
@@ -352,29 +226,10 @@ use Webmozart\Assert\Assert;
 class Article extends BaseModel implements Feedable, HasRatingContract, HasTranslationsContract
 {
     use HasChildren;
-<<<<<<< HEAD
-=======
-=======
- * @property \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
- * @mixin \Illuminate\Database\Eloquent\Model
- */
-class Article extends BaseModel implements Feedable, HasRatingContract, HasTranslationsContract
-{
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
     use HasComments;
     use HasRating;
     use HasTags;
     use HasTranslations;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    use HasChildren;
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 
     /** @var array<int, string> */
     public $translatable = [
@@ -388,36 +243,15 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Ottiene la traduzione di un attributo in una specifica lingua.
      *
-<<<<<<< HEAD
      * @param  string  $key  Il nome dell'attributo da tradurre
      * @param  string  $locale  Il codice della lingua richiesta
      * @param  bool  $useFallbackLocale  Se utilizzare o meno la lingua di fallback
-=======
-<<<<<<< HEAD
-     * @param  string  $key  Il nome dell'attributo da tradurre
-     * @param  string  $locale  Il codice della lingua richiesta
-     * @param  bool  $useFallbackLocale  Se utilizzare o meno la lingua di fallback
-=======
-     * @param string $key Il nome dell'attributo da tradurre
-     * @param string $locale Il codice della lingua richiesta
-     * @param bool $useFallbackLocale Se utilizzare o meno la lingua di fallback
-     * 
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      * @return array|string|int|null Il valore tradotto dell'attributo
      */
     public function getTranslation(string $key, string $locale, bool $useFallbackLocale = true): array|string|int|null
     {
         if (! $this->isTranslatableAttribute($key)) {
-<<<<<<< HEAD
             return (string) $this->getAttribute($key);
-=======
-<<<<<<< HEAD
-            return (string) $this->getAttribute($key);
-=======
-            return $this->getAttribute($key);
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
         }
 
         $translations = $this->getTranslations($key);
@@ -427,12 +261,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         if ($translation !== '' || ! $useFallbackLocale) {
             $value = $translation;
         } else {
-<<<<<<< HEAD
-            $fallbackLocale = config('app.fallback_locale');
-            $value = is_string($fallbackLocale) ? ($translations[$fallbackLocale] ?? '') : '';
-=======
-            $value = $translations[config('app.fallback_locale')] ?? '';
->>>>>>> 336b9b7 (.)
+            $value = $translations[(string) config('app.fallback_locale')] ?? '';
         }
 
         return match (true) {
@@ -445,14 +274,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
     /**
      * Attributi assegnabili in massa (mass assignment).
-<<<<<<< HEAD
      *
-=======
-<<<<<<< HEAD
-     *
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      * @return array<string, string>
      */
     protected function casts(): array
@@ -470,14 +292,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
     /**
      * Attributi assegnabili in massa (mass assignment).
-<<<<<<< HEAD
      *
-=======
-<<<<<<< HEAD
-     *
-=======
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      * @var list<string>
      */
     protected $fillable = [
@@ -548,33 +363,18 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Restituisce tutti i feed item.
      *
-<<<<<<< HEAD
      * @return Collection<int, Article>
      */
     public static function getAllFeedItems(): Collection
-=======
-<<<<<<< HEAD
-     * @return Collection<int, Article>
-     */
-    public static function getAllFeedItems(): Collection
-=======
-     * @return \Illuminate\Database\Eloquent\Collection<int, Article>
-     */
-    public static function getAllFeedItems(): \Illuminate\Database\Eloquent\Collection
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
     {
-        return static::latest()->take(150)->get();
+        /** @var Collection<int, Article> $result */
+        $result = static::latest()->take(150)->get();
+
+        return $result;
     }
 
     /**
      * Wrapper statico per latest() richiesto da PHPStan.
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 336b9b7 (.)
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function latest(?string $column = null): EloquentBuilder
     {
@@ -582,19 +382,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
         /** @var \Illuminate\Database\Eloquent\Builder $query */
         $query = static::query()->latest($column);
+
         return $query;
-<<<<<<< HEAD
-=======
-=======
-     * @param string|null $column
-     * @return \Illuminate\Database\Eloquent\Builder|static
-     */
-    public static function latest(?string $column = null): \Illuminate\Database\Eloquent\Builder
-    {
-        $column = $column ?? static::CREATED_AT;
-        return static::query()->latest($column);
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
     }
 
     public function sluggable(): array
@@ -621,15 +410,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
-<<<<<<< HEAD
         Assert::notNull($this->user, '['.__LINE__.']['.__FILE__.']');
-=======
-<<<<<<< HEAD
-        Assert::notNull($this->user, '['.__LINE__.']['.__FILE__.']');
-=======
-        Assert::notNull($this->user, '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 
         return FeedItem::create()
             ->id($this->slug)
@@ -647,30 +428,14 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
     public function getFormattedDate(): string
     {
-<<<<<<< HEAD
         Assert::notNull($this->published_at, '['.__LINE__.']['.__FILE__.']');
-=======
-<<<<<<< HEAD
-        Assert::notNull($this->published_at, '['.__LINE__.']['.__FILE__.']');
-=======
-        Assert::notNull($this->published_at, '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
 
         return $this->published_at->format('F jS Y');
     }
 
     public function getThumbnail(): ?string
     {
-<<<<<<< HEAD
         if ($this->getMedia()->first() !== null) {
-=======
-<<<<<<< HEAD
-        if ($this->getMedia()->first() !== null) {
-=======
-        if (null !== $this->getMedia()->first()) {
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
             return $this->getMedia()->first()->getUrl();
         }
 
@@ -689,18 +454,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
                 $words = Str::wordCount(strip_tags((string) $attributes['body']));
                 $minutes = ceil($words / 200);
 
-<<<<<<< HEAD
                 return $minutes.' '.str('min')->plural((int) $minutes).', '
                     .$words.' '.str('word')->plural($words);
-=======
-<<<<<<< HEAD
-                return $minutes.' '.str('min')->plural((int) $minutes).', '
-                    .$words.' '.str('word')->plural($words);
-=======
-                return $minutes . ' ' . str('min')->plural((int) $minutes) . ', '
-                    . $words . ' ' . str('word')->plural($words);
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
             }
         );
     }
@@ -751,22 +506,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-<<<<<<< HEAD
-                if (!is_array($attributes)) {
-                    return '#';
-                }
-                
-                $uploadImage = $attributes['main_image_upload'] ?? null;
-                $urlImage = $attributes['main_image_url'] ?? null;
-                
-                return (string) ($uploadImage ?? $urlImage ?? '#');
-=======
-<<<<<<< HEAD
-                return (is_array($attributes) ? (is_array($attributes) ? $attributes['main_image_upload'] : null) : null) ?? (is_array($attributes) ? (is_array($attributes) ? $attributes['main_image_url'] : null) : null) ?? '#';
-=======
-                return $attributes['main_image_upload'] ?? $attributes['main_image_url'] ?? '#';
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
+                /** @var array<string, mixed> $attributes */
+                return (string) (($attributes['main_image_upload'] ?? null) ?? ($attributes['main_image_url'] ?? null) ?? '#');
             }
         );
     }
@@ -777,15 +518,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
             return $this->title;
         }
 
-<<<<<<< HEAD
         return 'Get Title of article id '.$this->id;
-=======
-<<<<<<< HEAD
-        return 'Get Title of article id '.$this->id;
-=======
-        return 'Get Title of article id ' . $this->id;
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
     }
 
     public function getMainImage(): string
@@ -799,15 +532,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
             return Storage::url($this->main_image_upload);
         }
 
-<<<<<<< HEAD
         if ($this->main_image_url !== null) {
-=======
-<<<<<<< HEAD
-        if ($this->main_image_url !== null) {
-=======
-        if (null !== $this->main_image_url) {
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
             return $this->main_image_url;
         }
 
@@ -828,15 +553,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
     public function getUuidAttribute(?string $value): string
     {
-<<<<<<< HEAD
         if ($value !== null && $value !== '') {
-=======
-<<<<<<< HEAD
-        if ($value !== null && $value !== '') {
-=======
-        if (null !== $value && '' !== $value) {
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
             return $value;
         }
         // dddx($value);
@@ -865,16 +582,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         $startDate = Carbon::now();
 
         if ($startDate > $endDate) {
-<<<<<<< HEAD
-            $translation = __('blog::article.single_expired');
-            return is_string($translation) ? $translation : '';
-=======
-<<<<<<< HEAD
-            return (string) (__('blog::article.single_expired') ?: '');
-=======
-            return __('blog::article.single_expired');
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
+            return (string) (__('blog::article.single_expired') ?? '');
         }
 
         // Calcola la differenza tra le due date
@@ -890,49 +598,16 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         $days = $diff->d;
         $hours = $diff->h;
         $minutes = $diff->i;
-<<<<<<< HEAD
 
         if ($month === 0 && $days === 0 && $hours === 0 && $minutes === 0) {
-            $translation = __('blog::article.single_expired');
-            return is_string($translation) ? $translation : '';
+            return (string) (__('blog::article.single_expired') ?? '');
         }
 
         if ($days > 0) {
-            $translation = __('blog::article.time_left_days', ['days' => $days]);
-            return is_string($translation) ? $translation : '';
+            return (string) (__('blog::article.time_left_days', ['days' => $days]) ?? '');
         }
 
-        $translation = __('blog::article.time_left', ['hours' => $hours, 'minutes' => $minutes]);
-        return is_string($translation) ? $translation : '';
-=======
-<<<<<<< HEAD
-
-        if ($month === 0 && $days === 0 && $hours === 0 && $minutes === 0) {
-            return (string) (__('blog::article.single_expired') ?: '');
-        }
-
-        if ($days > 0) {
-            return (string) (__('blog::article.time_left_days', ['days' => $days]) ?: '');
-        }
-
-        return (string) (__('blog::article.time_left', ['hours' => $hours, 'minutes' => $minutes]) ?: '');
-=======
-        
-
-
-
-
-        if (0 === $month && 0 === $days && 0 === $hours && 0 === $minutes) {
-            return __('blog::article.single_expired');
-        }
-
-        if($days > 0) {
-            return __('blog::article.time_left_days', ['days' => $days]);
-        }
-        
-        return __('blog::article.time_left', ['hours' => $hours, 'minutes' => $minutes]);
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
+        return (string) (__('blog::article.time_left', ['hours' => $hours, 'minutes' => $minutes]) ?? '');
     }
 
     // /**
@@ -1014,15 +689,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Scope a query to only include show on homepage articles.
      *
-<<<<<<< HEAD
      * @param  EloquentBuilder  $query
-=======
-<<<<<<< HEAD
-     * @param  EloquentBuilder  $query
-=======
-     * @param EloquentBuilder $query
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      */
     public function scopeShowHomepage($query): EloquentBuilder
     {
@@ -1040,15 +707,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Scope a query to only include articles with a specified category.
      *
-<<<<<<< HEAD
      * @param  $id  -> The id of the category
-=======
-<<<<<<< HEAD
-     * @param  $id  -> The id of the category
-=======
-     * @param $id -> The id of the category
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      */
     public function scopeCategory(EloquentBuilder $query, string $id): EloquentBuilder
     {
@@ -1060,16 +719,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Scope a query to only include articles that belongs to an author.
      *
-<<<<<<< HEAD
      * @param  $profile_id  -> The id of the author
-=======
-<<<<<<< HEAD
-     * @param  $profile_id  -> The id of the author
-=======
-     * @param $profile_id -> The id of the author
-     *
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      * @return EloquentBuilder
      */
     public function scopeAuthor(EloquentBuilder $query, string $profile_id)
@@ -1082,16 +732,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Scope a query to only include articles with a specified tag.
      *
-<<<<<<< HEAD
      * @param  $id  -> The id of the tag
-=======
-<<<<<<< HEAD
-     * @param  $id  -> The id of the tag
-=======
-     * @param $id -> The id of the tag
-     *
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      * @return EloquentBuilder
      */
     public function scopeTag(EloquentBuilder $query, string $id)
@@ -1104,15 +745,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Scope a query to only include articles which contains searching words.
      *
-<<<<<<< HEAD
      * @param  $searching  -> The searching words
-=======
-<<<<<<< HEAD
-     * @param  $searching  -> The searching words
-=======
-     * @param $searching -> The searching words
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      */
     public function scopeSearch(EloquentBuilder $query, string $searching): EloquentBuilder
     {
@@ -1142,16 +775,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Converti l'attributo 'closed_at' in un oggetto Carbon.
      *
-<<<<<<< HEAD
      * @param  string  $value
-=======
-<<<<<<< HEAD
-     * @param  string  $value
-=======
-     * @param string $value
-     *
->>>>>>> origin/develop
->>>>>>> 336b9b7 (.)
      * @return Carbon
      */
     public function getClosedAtAttribute($value)
