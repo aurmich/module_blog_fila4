@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Modules\Xot\Datas\XotData;
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Modules\Blog\Database\Factories\CommentFactory;
-use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-use Modules\Media\Models\Media;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Database\Factories\CommentFactory;
+use Modules\Media\Models\Media;
+use Modules\Xot\Contracts\ProfileContract;
 use Modules\Xot\Contracts\UserContract;
+use Modules\Xot\Datas\XotData;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
  * Modules\Blog\Models\Comment.

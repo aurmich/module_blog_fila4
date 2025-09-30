@@ -8,7 +8,8 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Migrazione per la creazione della tabella delle visualizzazioni degli articoli.
  */
-return new class extends XotBaseMigration {
+return new class extends XotBaseMigration
+{
     /**
      * Esegue la migrazione del database.
      */
@@ -31,7 +32,7 @@ return new class extends XotBaseMigration {
                 $table->timestamp('viewed_at');
                 $table->timestamps();
                 $table->softDeletes();
-                
+
                 $table->index(['post_id', 'ip_address', 'user_agent']);
                 $table->index(['post_id', 'user_id']);
                 $table->index('viewed_at');

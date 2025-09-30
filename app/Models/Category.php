@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-use Modules\Media\Models\Media;
-use Modules\Blog\Database\Factories\CategoryFactory;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Xot\Contracts\ProfileContract;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Modules\Blog\Database\Factories\CategoryFactory;
+use Modules\Media\Models\Media;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 use Spatie\Translatable\HasTranslations;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 

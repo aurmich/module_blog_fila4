@@ -9,7 +9,8 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Migrazione per la creazione della tabella dei profili utente.
  */
-return new class extends XotBaseMigration {
+return new class extends XotBaseMigration
+{
     protected ?string $model_class = Profile::class;
 
     /**
@@ -45,7 +46,7 @@ return new class extends XotBaseMigration {
                 $table->schemalessAttributes('extra');
                 $table->timestamps();
                 $table->softDeletes();
-                
+
                 $table->index(['first_name', 'last_name']);
                 $table->index('email');
                 $table->index('credits');

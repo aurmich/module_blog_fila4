@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Spatie\ModelStatus\Status as BaseStatus;
 
 /**

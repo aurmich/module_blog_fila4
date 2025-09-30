@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Modules\UI\View\Components\Render\Blocks;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Blog\Datas\ArticleData;
@@ -19,6 +18,7 @@ use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;
+use Modules\UI\View\Components\Render\Blocks;
 use Webmozart\Assert\Assert;
 
 class ThemeComposer

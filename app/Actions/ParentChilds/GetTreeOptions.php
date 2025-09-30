@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\ParentChilds;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -19,7 +20,7 @@ class GetTreeOptions
     {
         // Use tree() method for models with HasRecursiveRelationships
         if (method_exists($model, 'tree')) {
-            /** @var \Illuminate\Database\Eloquent\Collection $models */
+            /** @var Collection $models */
             $models = $model->tree()->get()->toTree();
         } else {
             // Fallback for models without tree functionality

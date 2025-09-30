@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
 
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Pages\Actions;
+use Filament\Tables\Columns\TextColumn;
 use Modules\Blog\Filament\Resources\TextWidgetResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListTextWidgets extends XotBaseListRecords
 {
-
     public function getTableColumns(): array
     {
         return [
@@ -25,5 +23,4 @@ class ListTextWidgets extends XotBaseListRecords
     }
     // protected static string $resource = TextWidgetResource::class;
 
-   
 }

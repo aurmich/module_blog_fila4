@@ -17,12 +17,9 @@ class TranslateContentAction
     /**
      * Esegue la traduzione dei contenuti di un articolo.
      *
-     * @param string $model_class
-     * @param string $article_id
-     * @param list<string> $locales
-     * @param array<string,mixed> $data
-     * @param class-string $class
-     * @return void
+     * @param  list<string>  $locales
+     * @param  array<string,mixed>  $data
+     * @param  class-string  $class
      */
     public function execute(string $model_class, string $article_id, array $locales, array $data, string $class): void
     {

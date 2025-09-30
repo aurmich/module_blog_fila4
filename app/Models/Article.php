@@ -251,7 +251,9 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     public function getTranslation(string $key, string $locale, bool $useFallbackLocale = true): array|string|int|null
     {
         if (! $this->isTranslatableAttribute($key)) {
-            return (string) $this->getAttribute($key);
+            $value = $this->getAttribute($key);
+
+            return $value !== null ? (string) $value : null;
         }
 
         $translations = $this->getTranslations($key);
@@ -261,7 +263,9 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         if ($translation !== '' || ! $useFallbackLocale) {
             $value = $translation;
         } else {
-            $value = $translations[(string) config('app.fallback_locale')] ?? '';
+            $fallbackLocale = config('app.fallback_locale');
+            $fallbackKey = is_string($fallbackLocale) ? $fallbackLocale : 'en';
+            $value = $translations[$fallbackKey] ?? '';
         }
 
         return match (true) {
@@ -507,7 +511,11 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         return new Attribute(
             get: static function ($value, $attributes): string {
                 /** @var array<string, mixed> $attributes */
-                return (string) (($attributes['main_image_upload'] ?? null) ?? ($attributes['main_image_url'] ?? null) ?? '#');
+                $imageUpload = $attributes['main_image_upload'] ?? null;
+                $imageUrl = $attributes['main_image_url'] ?? null;
+                $result = $imageUpload ?? $imageUrl ?? '#';
+
+                return is_string($result) ? $result : (string) $result;
             }
         );
     }

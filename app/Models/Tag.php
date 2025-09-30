@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 use Spatie\Tags\Tag as BaseTag;
 
 /**

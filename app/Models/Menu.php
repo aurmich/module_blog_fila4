@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
-use Illuminate\Support\Carbon;
-use Modules\Blog\Database\Factories\MenuFactory;
-use Illuminate\Database\Eloquent\Builder;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\Collection;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-use Modules\Media\Models\Media;
-use Illuminate\Database\Eloquent\Model;
 use Closure;
 use Illuminate\Contracts\Database\Query\Expression;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Modules\Blog\Database\Factories\MenuFactory;
+use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\Collection;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Modules\Blog\Models\Menu.
@@ -118,8 +118,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Menu extends BaseModel implements HasMedia
 {
-    use InteractsWithMedia;
     use HasRecursiveRelationships;
+    use InteractsWithMedia;
 
     /** @var list<string> */
     protected $fillable = [

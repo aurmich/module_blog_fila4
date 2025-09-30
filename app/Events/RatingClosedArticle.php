@@ -13,10 +13,9 @@ use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
 class RatingClosedArticle extends ShouldBeStored
 {
     public function __construct(
-        readonly public string $userId,
-        readonly public string $articleId,
-        readonly public string $ratingId,
-        readonly public int $credit,
-    ) {
-    }
+        public readonly string $userId,
+        public readonly string $articleId,
+        public readonly string $ratingId,
+        public readonly int $credit,
+    ) {}
 }

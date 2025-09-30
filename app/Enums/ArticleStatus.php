@@ -15,7 +15,7 @@ enum ArticleStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::DRAFT => 'Bozza',
             self::PUBLISHED => 'Pubblicato',
             self::ARCHIVED => 'Archiviato',
@@ -25,7 +25,7 @@ enum ArticleStatus: string
 
     public static function fromString(string $value): self
     {
-        return match($value) {
+        return match ($value) {
             'draft' => self::DRAFT,
             'published' => self::PUBLISHED,
             'archived' => self::ARCHIVED,
@@ -33,4 +33,4 @@ enum ArticleStatus: string
             default => throw new InvalidArgumentException("Invalid status: {$value}"),
         };
     }
-} 
+}

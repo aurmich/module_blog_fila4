@@ -1,14 +1,12 @@
 <?php
 
-return array (
-  'fields' => 
-  array (
-    'layout' => 
-    array (
-      'label' => 'layout',
-      'placeholder' => 'layout',
-      'helper_text' => 'layout',
-      'description' => 'layout',
-    ),
-  ),
-);
+return [
+    'fields' => [
+        'layout' => [
+            'label' => 'layout',
+            'placeholder' => 'layout',
+            'helper_text' => 'layout',
+            'description' => 'layout',
+        ],
+    ],
+];
