@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Webmozart\Assert\Assert;
 
 class ArticleSeeder extends Seeder
@@ -31,7 +31,7 @@ class ArticleSeeder extends Seeder
             Assert::isArray($category);
             Category::create([
                 'title' => $category['name'],
-                'slug' => Str::slug($category['name']),
+                'slug' => Str::slug(SafeStringCastAction::cast($category['name'])),
             ]);
         }
 
@@ -52,24 +52,34 @@ class ArticleSeeder extends Seeder
     }
 
     /**
-     * @return Collection <Article>
+     * @return \Illuminate\Database\Eloquent\Collection<int, Article>
      */
-    private function createArticle(array $data = []): Collection
+    private function createArticle(array $data = []): \Illuminate\Database\Eloquent\Collection
     {
         $date = $this->date->subDay();
 
         $category_key = array_rand($this->categories);
+        $category = $this->categories[$category_key] ?? [];
+        $image = is_array($category) && isset($category['image']) ? $category['image'] : '';
 
         $defaults = [
             'created_at' => $date,
             'updated_at' => $date,
             'published_at' => $date,
             // 'category_id' => $category_key + 1,
-            'main_image_url' => $this->categories[$category_key]['image'],
+            'main_image_url' => $image,
         ];
 
         $data = array_merge($defaults, $data);
 
-        return Article::factory()->create($data);
+        $factory = Article::factory();
+        if (is_object($factory) && method_exists($factory, 'create')) {
+            $result = $factory->create($data);
+            if ($result instanceof \Illuminate\Database\Eloquent\Collection) {
+                return $result;
+            }
+        }
+
+        return new \Illuminate\Database\Eloquent\Collection;
     }
 }

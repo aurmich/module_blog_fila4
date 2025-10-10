@@ -53,7 +53,9 @@ class ThemeComposer
     {
         $fun = 'get'.Str::studly($type).'Articles';
 
-        return $this->{$fun}($number);
+        $result = $this->{$fun}($number);
+
+        return $result instanceof Collection ? $result : collect();
     }
 
     public function getFeaturedArticles(int $number = 6): Collection
@@ -64,7 +66,7 @@ class ThemeComposer
             ->take($number)
             ->orderBy('published_at', 'desc')
             ->get();
-        if ($rows->count() === 0/** @phpstan-ignore method.nonObject */) {
+        if (0 === $rows->count()/* @phpstan-ignore method.nonObject */) {
             $rows = Article::get();
             Article::whereRaw('1=1')->update(['show_on_homepage' => true]);
         }
@@ -81,6 +83,9 @@ class ThemeComposer
             ->get();
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getArticlesByCategory(string $category_id, int $number = 6): array
     {
         $rows = Article::where('category_id', $category_id)
@@ -178,9 +183,17 @@ class ThemeComposer
 
     public function getMethodData(string $method, int $number = 6): Paginator|array
     {
-        return $this->{$method}($number);
+        $result = $this->{$method}($number);
+        if ($result instanceof Paginator) {
+            return $result;
+        }
+
+        return is_array($result) ? $result : [];
     }
 
+    /**
+     * @return list<SliderData>
+     */
     public function getBanner(): array
     {
         $results = Banner::all()->sortBy('pos');
@@ -206,6 +219,9 @@ class ThemeComposer
         return $this->getFeaturedArticles($number);
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getArticlesLatest(int $number = 6): array
     {
         $results = $this->getLatestArticles($number); // ->toArray();
@@ -264,6 +280,9 @@ class ThemeComposer
         return ArticleData::from($article);
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getArticlesComingSoon(int $number = 6): array
     {
         $results = Article::published()
@@ -275,6 +294,9 @@ class ThemeComposer
         return $this->getArticleDataArray($results);
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getArticlesOrderByNumberOfBets(int $number = 6): array
     {
         $results = Article::published()
@@ -286,6 +308,9 @@ class ThemeComposer
         return $this->getArticleDataArray($results);
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getArticlesOrderByVolumes(int $number = 6): array
     {
         $results = Article::published()
@@ -297,6 +322,9 @@ class ThemeComposer
         return $this->getArticleDataArray($results);
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getAllArticles(): array
     {
         $results = Article::orderBy('created_at', 'desc')->get();
@@ -304,6 +332,9 @@ class ThemeComposer
         return $this->getArticleDataArray($results);
     }
 
+    /**
+     * @return list<ArticleData>
+     */
     public function getArticleDataArray(Collection $rows): array
     {
         $tmp = [];
@@ -313,7 +344,7 @@ class ThemeComposer
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
             }
-            /** @var array $content */
+            /* @var array $content */
             $tmp[] = ArticleData::from($content);
         }
 
@@ -331,10 +362,19 @@ class ThemeComposer
         return Category::where('slug', $slug)->first();
     }
 
+    /**
+     * @return list<array<string, mixed>>
+     */
     public function getHotTopics(): array
     {
-        return $categories = Category::with([
-            'categoryArticles' => fn ($article) => $article->withCount('ratings'),
+        $result = Category::with([
+            'categoryArticles' => function ($query) {
+                if (is_object($query) && method_exists($query, 'withCount')) {
+                    $query->withCount('ratings');
+                }
+
+                return $query;
+            },
             // 'banner'
         ])
             ->get()
@@ -346,6 +386,10 @@ class ThemeComposer
             ])
             ->sortByDesc('ratings_sum')
             ->take(3)
+            ->values()
             ->toArray();
+
+        /* @var list<array<string, mixed>> */
+        return array_values($result);
     }
 }

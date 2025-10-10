@@ -177,7 +177,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @method static int count(string $columns = '*')
  *
  * @mixin \Eloquent
- */
+  * */
 class Category extends BaseModel
 {
     use HasRecursiveRelationships;

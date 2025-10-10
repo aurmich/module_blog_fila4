@@ -23,6 +23,7 @@ use Modules\Blog\Filament\Fields\ArticleSidebar;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Webmozart\Assert\Assert;
 
 class ArticleResource extends XotBaseResource
 {
@@ -38,6 +39,9 @@ class ArticleResource extends XotBaseResource
         return ['it', 'en'];
     }
 
+    /**
+     * @return array<int|string, \Filament\Schemas\Components\Component>
+     */
     public static function getFormFields(): array
     {
         return [
@@ -47,6 +51,9 @@ class ArticleResource extends XotBaseResource
                     ->required()
                     ->lazy()
                     ->afterStateUpdated(static function ($set, $get, $state): void {
+                        Assert::isCallable($set, 'set must be callable');
+                        Assert::isCallable($get, 'get must be callable');
+
                         if ($get('slug')) {
                             return;
                         }
@@ -85,10 +92,26 @@ class ArticleResource extends XotBaseResource
                     // ->multiple()
                     ->required()
                     // ->relationship('categories', 'title')
-                    ->options(Category::getTreeCategoryOptions())
-                    ->createOptionForm(CategoryResource::getFormFields())
+                    ->options(function () {
+                        $options = Category::getTreeCategoryOptions();
+                        Assert::isArray($options, 'getTreeCategoryOptions must return array');
+
+                        return $options;
+                    })
+                    ->createOptionForm(function () {
+                        $fields = CategoryResource::getFormFields();
+                        Assert::isArray($fields, 'getFormFields must return array');
+
+                        return $fields;
+                    })
                     ->createOptionUsing(function (array $data) {
-                        $category = Category::create($data);
+                        Assert::isArray($data, 'Data must be an array');
+                        // Cast to the expected type
+                        $categoryData = [];
+                        foreach ($data as $key => $value) {
+                            $categoryData[(string) $key] = $value;
+                        }
+                        $category = Category::create($categoryData);
 
                         return $category->getKey();
                     }),
@@ -175,10 +198,14 @@ class ArticleResource extends XotBaseResource
     }
 
     /**
-     * @return array<string|int, Component>
+     * @return array<int|string, Component>
      */
     public static function getFormSchema(): array
     {
-        return static::getFormFields();
+        /** @var array<int|string, Component> $fields */
+        $fields = static::getFormFields();
+        Assert::isArray($fields, 'getFormFields must return array');
+
+        return $fields;
     }
 }

@@ -17,6 +17,8 @@ use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingArticleData;
 // use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Profile as BlogProfile;
+use Modules\Xot\Actions\Cast\SafeArrayCastAction;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
@@ -66,7 +68,10 @@ class Profile extends Page implements HasForms
 
         // dddx($this->data);
 
-        $this->form->fill($this->data);
+        /** @var array<string, mixed> $formData */
+        $formData = SafeArrayCastAction::cast($this->data);
+
+        $this->form->fill($formData);
     }
 
     public function render(): View
@@ -97,7 +102,7 @@ class Profile extends Page implements HasForms
             //     dddx([$key, $field]);
             // }
             $schema[] = TextInput::make($key)
-                ->label($this->data[$key]);
+                ->label(SafeStringCastAction::cast($this->data[$key]));
             // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
             // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
             // ->disabled()

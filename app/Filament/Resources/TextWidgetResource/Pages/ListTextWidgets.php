@@ -11,6 +11,9 @@ use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListTextWidgets extends XotBaseListRecords
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function getTableColumns(): array
     {
         return [

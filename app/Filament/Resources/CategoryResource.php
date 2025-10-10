@@ -17,7 +17,9 @@ use Modules\Blog\Filament\Resources\CategoryResource\Pages\EditCategory;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages\ListCategories;
 use Modules\Blog\Models\Category;
 use Modules\UI\Filament\Forms\Components\IconPicker;
+use Modules\Xot\Actions\Cast\SafeArrayCastAction;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Webmozart\Assert\Assert;
 
 class CategoryResource extends XotBaseResource
 {
@@ -34,6 +36,9 @@ class CategoryResource extends XotBaseResource
         return ['it', 'en'];
     }
 
+    /**
+     * @return array<int|string, \Filament\Schemas\Components\Component>
+     */
     public static function getFormFields(): array
     {
         return [
@@ -50,11 +55,14 @@ class CategoryResource extends XotBaseResource
                 ->maxLength(2048),
             Select::make('parent_id')
                 ->label('Categoria Padre')
-                ->options(
+                ->options(function () {
                     // Category::where('parent_id', null)->pluck('title', 'id')
                     // Category::tree()->get()->toTree()->pluck('title', 'id')
-                    Category::getTreeCategoryOptions()
-                )
+                    /** @var array<array<string>|string> $options */
+                    $options = SafeArrayCastAction::cast(Category::getTreeCategoryOptions());
+
+                    return $options;
+                })
                 ->searchable(),
             TextInput::make('description')
                 ->maxLength(2048),
@@ -83,7 +91,11 @@ class CategoryResource extends XotBaseResource
      */
     public static function getFormSchema(): array
     {
-        return static::getFormFields();
+        /** @var array<string|int, Component> $fields */
+        $fields = static::getFormFields();
+        Assert::isArray($fields, 'getFormFields must return array');
+
+        return $fields;
     }
 
     public static function getPages(): array
