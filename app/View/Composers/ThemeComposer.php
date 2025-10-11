@@ -389,7 +389,8 @@ class ThemeComposer
             ->values()
             ->toArray();
 
-        /* @var list<array<string, mixed>> */
-        return array_values($result);
+        /** @var list<array<string, mixed>> $typedResult */
+        $typedResult = array_values($result);
+        return $typedResult;
     }
 }
