@@ -58,7 +58,7 @@ class Profile extends Page implements HasForms
             $this->data['deleted_at'],
             $this->data['deleted_by'],
 
-            $this->data['credits'],
+            
 
             $this->data['slug'],
             $this->data['extra']

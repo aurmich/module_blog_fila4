@@ -29,7 +29,7 @@ class ListProfiles extends UserListProfiles
     {
         $res = parent::getTableColumns();
 
-        $res['credits'] = TextColumn::make('credits');
+        
 
         return $res;
     }
@@ -37,16 +37,12 @@ class ListProfiles extends UserListProfiles
     /**
      * Sovrascrive la visibilità per rispettare la signature della classe base.
      *
-     * @return array<string, mixed>
-     */
-    /**
-     * @return array<string, mixed>
      */
     public function getTableActions(): array
     {
         $res = parent::getTableActions();
 
-        // $res[] = ModifyCredits::make();
+        
 
         return $res;
     }

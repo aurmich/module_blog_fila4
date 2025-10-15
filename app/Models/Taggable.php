@@ -24,7 +24,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property array $custom_properties
- *
  * @method static Builder|Taggable newModelQuery()
  * @method static Builder|Taggable newQuery()
  * @method static Builder|Taggable onlyTrashed()
@@ -39,16 +38,12 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder|Taggable whereUpdatedBy($value)
  * @method static Builder|Taggable withTrashed()
  * @method static Builder|Taggable withoutTrashed()
- *
  * @property Carbon|null $deleted_at
  * @property string|null $deleted_by
- *
  * @method static Builder|Taggable whereDeletedAt($value)
  * @method static Builder|Taggable whereDeletedBy($value)
- *
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
- *
  * @method static Taggable|null first()
  * @method static Collection<int, Taggable> get()
  * @method static Taggable create(array $attributes = [])
@@ -56,7 +51,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|Taggable where((string|Closure) $column, mixed $operator = null, mixed $value = null, string $boolean = 'and')
  * @method static Builder<static>|Taggable whereNotNull((string|Expression) $columns)
  * @method static int count(string $columns = '*')
- *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot

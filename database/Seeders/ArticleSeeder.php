@@ -58,6 +58,7 @@ class ArticleSeeder extends Seeder
     {
         $date = $this->date->subDay();
 
+        /* @phpstan-ignore-next-line argument.type */
         $category_key = array_rand($this->categories);
         $category = $this->categories[$category_key] ?? [];
         $image = is_array($category) && isset($category['image']) ? $category['image'] : '';

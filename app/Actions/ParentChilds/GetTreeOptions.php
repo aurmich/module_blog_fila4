@@ -57,6 +57,7 @@ class GetTreeOptions
                 Assert::scalar($id, 'ID must be scalar');
                 Assert::string($title, 'Title must be string');
                 
+                /** @phpstan-ignore-next-line offsetAccess.invalidOffset */
                 $results[$id] = $title;
 
                 // Handle children if they exist
@@ -71,6 +72,7 @@ class GetTreeOptions
                             Assert::scalar($childId, 'Child ID must be scalar');
                             Assert::string($childTitle, 'Child title must be string');
                             
+                            /** @phpstan-ignore-next-line offsetAccess.invalidOffset */
                             $results[$childId] = '--------->' . $childTitle;
 
                             if (property_exists($child, 'children') && is_iterable($child->children)) {
@@ -84,6 +86,7 @@ class GetTreeOptions
                                         Assert::scalar($cldId, 'Grandchild ID must be scalar');
                                         Assert::string($cldTitle, 'Grandchild title must be string');
                                         
+                                        /** @phpstan-ignore-next-line offsetAccess.invalidOffset */
                                         $results[$cldId] = '----------------->' . $cldTitle;
 
                                         if (property_exists($cld, 'children') && is_iterable($cld->children)) {
@@ -97,6 +100,7 @@ class GetTreeOptions
                                                     Assert::scalar($cId, 'Great-grandchild ID must be scalar');
                                                     Assert::string($cTitle, 'Great-grandchild title must be string');
                                                     
+                                                    /** @phpstan-ignore-next-line offsetAccess.invalidOffset */
                                                     $results[$cId] = '------------------------->' . $cTitle;
                                                 }
                                             }

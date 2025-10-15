@@ -41,9 +41,7 @@ return new class extends XotBaseMigration
                     $table->string('user_id')->change();
                 }
 
-                if (! $this->hasColumn('credits')) {
-                    $table->decimal('credits')->default(0);
-                }
+                
 
                 if (! $this->hasColumn('slug')) {
                     $table->string('slug')->nullable();
@@ -53,9 +51,6 @@ return new class extends XotBaseMigration
                     $table->schemalessAttributes('extra');
                 }
 
-                if ($this->hasColumn('credits')) {
-                    $table->decimal('credits')->change();
-                }
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );

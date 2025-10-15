@@ -176,10 +176,7 @@ class ThemeComposer
         return $article->render();
     }
 
-    public function rankingProfilesByCredits(): Collection
-    {
-        return Profile::all()->sortByDesc('credits');
-    }
+    
 
     public function getMethodData(string $method, int $number = 6): Paginator|array
     {

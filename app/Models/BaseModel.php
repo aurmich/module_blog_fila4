@@ -4,72 +4,42 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-// ---------- traits
-// //use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Xot\Models\Traits\HasXotFactory;
-use Modules\Xot\Traits\Updater;
+use Modules\Xot\Models\XotBaseModel;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
- * Class BaseModel.
+ * Base Model for Blog module.
  *
+ * Extends XotBaseModel and adds:
+ * - Spatie Media Library support (HasMedia, InteractsWithMedia)
+ * - Soft Deletes support
+ *
+ * @see \Modules\Xot\Models\XotBaseModel
  */
-abstract class BaseModel extends Model implements HasMedia
+abstract class BaseModel extends XotBaseModel implements HasMedia
 {
-    use HasXotFactory;
-
-    // use Searchable;
-    // use Cachable;
     use InteractsWithMedia;
     use SoftDeletes;
-    use Updater;
 
     /**
-     * Indicates whether attributes are snake cased on arrays.
+     * The connection name for the model.
      *
-     * @see  https://laravel-news.com/6-eloquent-secrets
-     *
-     * @var bool
+     * @var string
      */
-    public static $snakeAttributes = true;
-
-    /** @var bool */
-    public $incrementing = true;
-
-    /** @var bool */
-    public $timestamps = true;
-
-    /** @var int */
-    protected $perPage = 30;
-
-    /** @var string */
     protected $connection = 'blog';
 
-    /** @var string */
-    protected $primaryKey = 'id';
-
-    /** @var string */
-    protected $keyType = 'string';
-    /** @var string */
-
-    /** @var list<string> */
-    protected $hidden = [
-        // 'password'
-    ];
-
-    /** @return array<string, string> */
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
-        return [
-            'id' => 'string',
-            'uuid' => 'string',
-            'published_at' => 'datetime',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
+        return array_merge(parent::casts(), [
+            // Module-specific casts only
+            // Common casts (id, uuid, timestamps) are inherited from XotBaseModel
+        ]);
     }
 }
